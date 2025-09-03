@@ -1,14 +1,52 @@
-#include <stdio.h>
-
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
+#include <stdio.h>
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+#define tamanho_tabuleiro 10
+#define tamanho_navio 3
+
+int main()
+{
+    int tabuleiro[tamanho_tabuleiro][tamanho_tabuleiro] = {0};
+    int navioHorizontal[tamanho_navio] = {3, 3, 3};
+    int navioVertical[tamanho_navio] = {3, 3, 3};
+    char linha[10] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'};
+
+    int linhaHorizontal = 4, colunaHorizontal = 2;
+    int linhaVertical = 1, colunaVertical = 6;
+
+    if (colunaHorizontal + tamanho_navio <= tamanho_tabuleiro &&
+        linhaVertical + tamanho_navio <= tamanho_tabuleiro) {
+        
+        for (int i = 0; i < tamanho_navio; i++) {
+            tabuleiro[linhaHorizontal][colunaHorizontal + i] = navioHorizontal[i];
+        }
+
+        for (int i = 0; i < tamanho_navio; i++) {
+            tabuleiro[linhaVertical + i][colunaVertical] = navioVertical[i];
+        }
+
+        printf("   ");
+        for (int j = 0; j < tamanho_tabuleiro; j++) {
+            printf("%c ", linha[j]);
+        }
+        printf("\n");
+
+        for (int i = 0; i < tamanho_tabuleiro; i++) {
+            printf("%2d ", i + 1);
+            for (int j = 0; j < tamanho_tabuleiro; j++) {
+                printf("%d ", tabuleiro[i][j]);
+            }
+            printf("\n");
+        }
+    } else {
+        printf("o navio passou do tabuleiro.\n");
+    }
+
+    return 0;
+}
+
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
@@ -25,7 +63,7 @@ int main() {
     // 0 0 1 0 0
     // 0 1 1 1 0
     // 1 1 1 1 1
-    
+
     // Exemplo para habilidade em octaedro:
     // 0 0 1 0 0
     // 0 1 1 1 0
@@ -36,5 +74,3 @@ int main() {
     // 1 1 1 1 1
     // 0 0 1 0 0
 
-    return 0;
-}
